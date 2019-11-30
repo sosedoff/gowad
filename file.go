@@ -167,8 +167,8 @@ func (f *File) EntriesForMarkers(start, end string) ([]Entry, error) {
 	endIndex := -1
 
 	for i, e := range f.entries {
-		// Skip actual entries until we find the end marker
-		if startIndex >= 0 && e.Size != 0 {
+		// We only looking for marker entries
+		if e.Size != 0 {
 			continue
 		}
 
