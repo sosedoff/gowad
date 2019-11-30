@@ -1,9 +1,5 @@
 package wad
 
-import (
-	"encoding/binary"
-)
-
 // Thing contains information about level object
 type Thing struct {
 	XPos    int16
@@ -15,8 +11,7 @@ type Thing struct {
 
 // GetThings reads things from the blob
 func GetThings(blob *Blob) ([]Thing, error) {
-	count := int(blob.Size) / int(binary.Size(Thing{}))
-	things := make([]Thing, count)
+	things := make([]Thing, blob.Count(Thing{}))
 	err := blob.Read(&things)
 	return things, err
 }
