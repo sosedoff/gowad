@@ -58,6 +58,11 @@ func (b Blob) MustSeek(offset int32) {
 	}
 }
 
+// Count returns a number of objects that blob holds
+func (b Blob) Count(obj interface{}) int32 {
+	return b.Size / int32(binary.Size(obj))
+}
+
 // Read reads binary data into the provided output
 func (b Blob) Read(out interface{}) error {
 	return binary.Read(b.reader, binary.LittleEndian, out)
